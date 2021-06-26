@@ -1,0 +1,22 @@
+{
+  "name": "msfs-parking-brake-toggle",
+  "version": "0.0.1",
+  "description": "Workaround for the parking brake problem of the A320 by FlyByWire",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wnzlff/msfs-parking-brake-toggle.git"
+  },
+  "author": "Paul Wenzlaff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wnzlff/msfs-parking-brake-toggle/issues"
+  },
+  "homepage": "https://github.com/wnzlff/msfs-parking-brake-toggle#readme",
+  "dependencies": {
+    "fsuipc": "^0.4.1"
+  }
+}
