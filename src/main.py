@@ -11,7 +11,7 @@ with FSUIPC() as fsuipc:
     set_parkbrake, release_parkbreak = prepared_data.read()
 
     try:
-        # when parking brake is off => turn on
+        # if parking brake is off => turn on
         if set_parkbrake == int(0):
             prepared_data.write([0x0BC8, 0x7FFF])
             print('Parking brake: On...')
