@@ -1,51 +1,22 @@
 from fsuipc import FSUIPC
 
-def set_parking_brake():
-    print('Parking brake changed to: On')
-
-def release_parking_brake():
-    print('Parking brake changed to: Off')
-
 with FSUIPC() as fsuipc:
-    msfs = fsuipc.prepare_data([
-        (0x0BC8, "l") # offset parking brake
+    prepared_data = fsuipc.prepare_data([
+        (0x0BC8, "h"), # offset set parking brake
+        (0x7FFF, "h")  # offset release parking brake
     ], True)
 
-    initial = True
+    print("\nSet parking brake...")
 
-    while True:
-        parkbrake = msfs.read()
+    set_parkbrake, release_parkbreak = prepared_data.read()
 
-        if initial:
-            if parkbrake[0] == int(229375):
-                print('Current parking brake status: On\n')
+    try:
+        # when parking brake is off => turn on
+        if set_parkbrake == int(0):
+            prepared_data.write([0x0BC8, 0x7FFF])
+            print('Parking brake: On...')
 
-            elif parkbrake[0] == int(0):
-                print('Current parking brake status: Off\n')
+    except Exception as e:
+        print('Error: Could not set the parking brake')
 
-            else:
-                print('Current parking brake status: Unknown\n')
-
-            initial = False
-
-        else:
-            if parkbrake[0] == int(229375):
-                try:
-                    print('Parking brake changed to: On')
-                except:
-                    print('Could not change status of parking brake')
-
-            elif parkbrake[0] == int(0):
-                try:
-                    msfs.write('0x0BC8', 1)
-                    print('Parking brake changed to: On')
-                except Exception as e:
-                    print(e)
-                    print('Could not change status of parking brake')
-
-            else:
-                print('Parking brake changed to: Unknown')
-
-        input("Press ENTER to toggle parking brake status!\n")
-
-
+    input('Press any button to quit...')
