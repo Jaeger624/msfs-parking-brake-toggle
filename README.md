@@ -4,7 +4,7 @@ The great team of FlyByWire has decided to break away from the usual used interf
 
 # Usage
 
-Download the latest release version from this repository and unpack it. Then run the program by launching ```main.exe```, which sets the parking brake.
+Download the latest release version from this repository and unpack it. Then run the program by launching ```main.exe```, which sets the parking brake. Before that, make sure that your MSFS2020 is running and FSUIPC has been started before.
 
 # Contributions
 
